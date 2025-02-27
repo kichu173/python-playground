@@ -4,7 +4,7 @@ nums = [3, 2, 6, 8, 4, 6, 2, 9]
 
 print(nums)
 
-evens = list(filter(lambda n: n % 2 == 0, nums)) # we are passing nums as the first argument to the filter function and the lambda function as the second argument. The lambda function is checking if the number is even or not. If it is even, it will return True, otherwise False. The filter function will then filter out the numbers for which the lambda function returns True. So, the evens list will contain only the even numbers from the nums list.
+evens = list(filter(lambda n: n % 2 == 0, nums)) # The filter function will apply the lambda function to each element of the nums list. If the lambda function returns True, the element will be added to the new list. If the lambda function returns False, the element will not be added to the new list. The second argument of the filter function is the list that we are filtering.
 
 print(evens) # [2, 6, 8, 4, 6, 2]
 
