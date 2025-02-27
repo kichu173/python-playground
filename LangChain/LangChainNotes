@@ -1,0 +1,99 @@
+# https://www.youtube.com/watch?v=nAmC7SoVLd8&list=PLeo1K3hjS3uu0N_0W6giDXzZIcB07Ng_F - codebasics
+LangChain is open source framework that allows you to build apps on top of LLM / Large Language Model
+
+# OpenAi api is just not enough to build an app based on LLM
+# LangChain is framework that allows you to build apps using LLMs
+
+# Eden Marco
+# LangChain is a open source framework that simplifies the process of building LLM powered apps.
+# It provides us with a set of tools and abstractions that make it easier for us to create complex LLM powered applications.
+# LangChain was adopted by developers who want to build LLM based apps without understanding how machine learning works or how to train models, but rather to use models as blackbox.
+# The most popular framework when developing LLM powered apps like agents and RAG apps.
+
+# Usecase:
+# Imagine you want to build an app on top of a powerful, LLM like GPT-3 or Claude Sonnet and that you would like to combine it with your own personal data, that LLM was not trained on so its not aware of.
+# Maybe you want to connect it to your personal PDF files or maybe to your emails or your notion db.
+# And also you want to construct prompts dynamically according to some user input.
+# And of course, you would also want to save the history of messages between the user and the AI.
+# And lets say you want to switch an LLM now, now you want to use GPT-4 or maybe you want to use a different LLM like Claude Sonnet.
+# And what if you want to connect the LLM into tool like Google Search or to make an api call according to the user input.
+
+# When we create an AI app, it usually is going to query the ai model.
+# LangChain - chain is a sequence of steps that the input goes through before it reaches the model.
+
+# pipenv install langchain - langchain package
+# pipenv install langchain-openai - third party package which integrates LangChain to the LLM powered by OpenAI
+# pipenv install langchain-community - third party package which holds a lot of community contributed code, like text splitters and output parsers.
+# pipenv install langchainhub - this package is an extension of langchain that is going to help us to download dynamically prompts that are contributed by the community.
+# pipenv install black - code formatter
+
+# What are prompt templates?
+# Well, LLMs receive as input something which is called a prompt.
+# Prompt is a simply text input that we give the LLM and LLM processes it and returns the output.
+# Prompt templates are a way to define a set of prompts that are going to be used by the AI.
+
+https://pypi.org/project/langchain/ - to find the langchain latest version here
+
+
+
+
+Virtual Environments in python (https://www.youtube.com/watch?v=6Qmnh5C4Pmo&t=1s  |  https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55)
+, environment variables in python (https://www.youtube.com/watch?v=8dlQ_nDE7dQ&t=210s)
+
+No, you don't need to use python3 --version if python --version already shows Python 3.12.9. The python3 command is typically used on systems where both Python 2 and Python 3 are installed to distinguish between the two versions. Since your python command is already pointing to Python 3.12.9, you're all set!
+
+No, you don't need to install a separate pip3. Since your pip command is already associated with Python 3.12, it will handle package installations for Python 3. The pip3 command is typically used on systems where both Python 2 and Python 3 are installed to distinguish between the two versions. In your case, pip is already configured for Python 3.12, so you're good to go!
+
+pip freeze
+In settings - python interpreter -> dropdown -> show all -> add local interpreter - pipenv - apply - ok
+(https://gist.github.com/bradtraversy/c70a93d6536ed63786c434707b898d55) - Pipenv Cheat Sheet cmds
+pipenv shell
+pipenv lock -r | pipenv run pip list (check local packages)
+pipenv uninstall camelcase
+pipenv install nose --dev
+pip install -r requirements.txt (pip install: The base command to install packages using pip.
+-r requirements.txt: The -r option followed by the filename indicates that pip should read the list of packages from the requirements.txt file and install them.)
+Check Dependency Graph:
+pip install pipdeptree
+pipdeptree
+Show Only Top-Level Packages:
+pipdeptree --freeze
+Output in JSON Format:
+pipdeptree --json
+Check security vulnerabilities
+pip install pip-audit
+pip-audit
+Output in JSON Format:
+pip-audit --json
+Ignore Certain Packages:
+pip-audit --ignore <package_name>
+
+echo 'https://github.com/emarco177/ice_breaker/tree/1-start-here'
+
+git clone -b 1-start-here https://github.com/emarco177/ice_breaker
+
+Section 3 - Eden marco
+Things to explore:
+Chains
+Agents
+Custom Agents
+Tools. ToolKit
+Output Parsers
+
+# Agents - Theory
+# We know LLMs are trained on a specific date and lets say we want to get the info of current events like some news article or what is the weather today.
+# If we ask the LLM one of the above questions, then it wont be able to answer it because it was not trained on the data that is current.
+# Lets say we want to get some access from a certain db, some external source, or make a simple api call, so this where agents come into play.
+
+# You can think agent like a bot.
+# It will perform actions on your behalf and it is able to interact with the LLMs.
+# It connects the langchain framework to external services and those third parties and it is able to perform actions on your behalf.
+# Agent actually does 2 things:
+# 1. It is able to connect to external services and third parties.
+# 2. It is able to interact with the LLMs. (basically engine of agent is LLM)
+# Once we give the task to agent, the first thing it does is it calculates what subtasks you need to do in order to accomplish the main task and send it to user.
+# Breaking into small subtasks are done by LLMs, subtask can be making an api call, connect to db that can be done by agent.
+# Problem agent trying to solve is we need to access something from external world that LLM was not trained on.
+
+
+
