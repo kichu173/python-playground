@@ -39,7 +39,7 @@ Why use LangChain Chat models?
 5. Scalability:
     As projects grow, LangChain's interface supports more complex workflows, letting you focus on features, not API management.
 
-#  pip install python-dotenv
+# pip install python-dotenv
 # pip install -qU langchain-ollama (or) pip install -qU langchain-openai (or) pip install -qU langchain-google-genai (or) pip install -qU langchain-anthropic
 # -q - quiet mode
 # -U - upgrade the package if it is already installed to the latest version.
@@ -52,3 +52,17 @@ Example. "You are a marketing expert."
 Example. "What's a good marketing strategy"?
 3. AIMessage: Contains the AI's responses based on previous messages
 Example. "Focus on social media engagement"
+
+# 2nd core component of the LangChain is Prompt templates, which are a way to define a set of prompts that are going to be used by the AI.
+# In production grade applications, you will be using it a lot.
+
+# 3rd core component of the LangChain is the Chains. It lets you connect multiple tasks together by chaining it together and it helps you create sort of like an unified workflow.
+.It is a sequence of steps that the input goes through before it reaches the model.
+
+# TYPES OF CHAINING
+1. Extended or Sequential Chaining:
+Chaining tasks one by one is a straight/sequential line
+2. Parallel Chaining:
+Let you run tasks parallely or simultaneously without being dependent on each other
+3. Conditional Chaining:
+Let you run a particular branch based on a condition

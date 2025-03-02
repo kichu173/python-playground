@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 
 """
 Steps to replicate this example:
-1. Create a Firebase account
+1. Create a Firebase account # https://console.firebase.google.com/project/langchain-c548e/overview -> build -> Firestore Database
 2. Create a new Firebase project and (build) -> FireStore Database
 3. Retrieve the Project ID
 4. Install the Google Cloud CLI on your computer
