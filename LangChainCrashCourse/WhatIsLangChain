@@ -1,0 +1,54 @@
+# https://www.youtube.com/watch?v=at6XrRRdOQo&list=LL&index=2&t=41s
+# https://github.com/harishneel1/langchain-course
+# https://platform.openai.com/settings/organization/billing/overview
+
+# Prompt in chatGpt - I want to plan a trip to Paris this Saturday. Can you book my flight, also book a hotel the same day, and suggest some good restaurants?
+# ChatGpt itself an app with UI -> query(above prompt) is now sent to LLM (GPT-3.5-turbo, GPT-4o, etc) -> LLM processes the prompt and returns the output -> output is displayed in the UI
+# Response in short - I can't book flights or hotels directly, but I can definitely help you plan your trip! Here are suggestions ......
+(cant book tickets - biggest limitation of LLM)
+# LLMs are smart and can talk about travel but they cannot actually interact with real world, so on its own LLMs are just the brains, they can be trained on certain data
+# and it will reason with it but it cannot do anything outside of it.
+# Reasoning ability of LLMs (brain), but at the same time it should have the ability to communicate with the real world apis/dbs/send emails.
+# If you wanna do that we need to have some sort of a framework that is going to help us to connect the LLM to the real world.
+# LangChain acts a bridge between LLM and real world. LangChain the most popular framework that helps build apps using LLMs.
+
+# In the future if you want to switch out from GPT 4o with lets say a free HuggingFace LLM if you are short on cash or maybe you want to use a different LLM like Claude Sonnet.
+# You can do so without even touching the code that you wrote with LangChain.
+# So with LangChain the AI that we are working with can do so much with real world.
+# example: it can access lot of apis, like it can access flight and restaurant booking api, booking.com, access private company dbs to answer customer queries, it can send emails, it can browse google, wikipedia, it can scape websites and a lot lot more..
+# LangChain doesnt just make the AI smarter but it gives the ability to act in the real world.
+
+# python -m venv .venv
+# -m - module
+# venv - module name
+# .venv - virtual environment name
+In settings - python interpreter -> dropdown -> show all -> add local interpreter - venv - apply - ok
+
+# 1st core component of the LangChain is chat models (https://python.langchain.com/docs/integrations/chat/)
+# A chat model in LangChain is a component designed to communicate in a structured way with the LLMs like GPT-4, Hugging Face, and claude sonnet.
+
+Why use LangChain Chat models?
+1. Consistent workflow:
+    LangChains Chat models unify different APIs, saving you from managing each one's unique setup and quirks.
+2. Easy switching between LLMs
+    Want to switch from one LLM to another? LangChain's chat models make it simple without code rewrites.
+3. Context management:
+    LangChain's chat models manage the context of the conversation, making it easy to keep track of the conversation history and state.
+4. Efficient Chaining
+    You can connect multiple LLM calls and tasks in one structured pipeline, which is tricky to setup manually.
+5. Scalability:
+    As projects grow, LangChain's interface supports more complex workflows, letting you focus on features, not API management.
+
+#  pip install python-dotenv
+# pip install -qU langchain-ollama (or) pip install -qU langchain-openai (or) pip install -qU langchain-google-genai (or) pip install -qU langchain-anthropic
+# -q - quiet mode
+# -U - upgrade the package if it is already installed to the latest version.
+# pip install -qU langchain-google-firestore
+
+Types of Messages in LangChain
+1. SystemMessage: Defines the AI's role and sets the context for the conversation
+Example. "You are a marketing expert."
+2. HumanMessage: Represents user input or questions directed to the AI
+Example. "What's a good marketing strategy"?
+3. AIMessage: Contains the AI's responses based on previous messages
+Example. "Focus on social media engagement"
