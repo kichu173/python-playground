@@ -66,3 +66,25 @@ Chaining tasks one by one is a straight/sequential line
 Let you run tasks parallely or simultaneously without being dependent on each other
 3. Conditional Chaining:
 Let you run a particular branch based on a condition
+
+# 4th core component of the LangChain is RAG. It is what is creating a lot of impact in how businesses operate and increase efficiency.
+Retrieval Augmented Generation (RAG).
+
+# RAGs solves one problem with LLM and the problem it solves:
+RAGs give LLMs additional knowledge
+In other words, we use RAGs to provide LLMs an external source of information to give better answers to out prompts.
+
+# Real-world example:
+Let's say you're working at a company with IOOs of internal documents ( like policy guidelines, technical specs, customer support documents, etc)
+
+Now, if you have a question that could be answered by one of these documents, you would normally need to search through each file manually
+
+But with RAGs, this process can be streamlined. (You can give access to all these private documents to the LLM or provide external source of information to LLM)
+
+So the next time when you have a question, you can just ask it in simple English and the LLM retrieves the most relevant info from those documents and uses it to give you an accurate answer—all in one go.
+
+# Next challenge solved by RAG: Context Window Limitation
+It solves this problem by only pulling/retrieving the relevant sections of the documents based on the user prompt.
+
+RAGs is a method where we combine LLMs with a retrieval system.
+This retrieval system can search through vast sources of external information—like documents, databases, or knowledge bases—whenever the LLM needs additional knowledge to give you a better answers. All the while making sure LLMs are not overwhelmed with bigger prompts.

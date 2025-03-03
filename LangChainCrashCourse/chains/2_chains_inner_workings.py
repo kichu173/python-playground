@@ -22,7 +22,7 @@ prompt_template = ChatPromptTemplate.from_messages(
 # Create individual runnables (steps in the chain) - Each task in a chain is called a Runnable.
 # RunnableLambda(LangChain import) is just a simple wrapper that lets us create each task as a single reusable unit.
 # Each RunnableLambda takes an input does something with it - could be like filling in a prompt or calling the model and then gives us the output.
-format_prompt = RunnableLambda(lambda x: prompt_template.format_prompt(**x))# Here x is the dictionary {"animal": "cat", "count": 2} which you pass in chain.invoke() function. prompt_template.format_prompt(animal="cats", count=5)
+format_prompt = RunnableLambda(lambda x: prompt_template.format_prompt(**x))# Here x is the dictionary {"animal": "cat", "count": 2} which you pass in chain.invoke() function. prompt_template.format_prompt(animal="cat", count=2)
 invoke_model = RunnableLambda(lambda x: model.invoke(x.to_messages()))# Result of format_prompt is passed to invoke_model as input. x.to_messages() is a function that converts the output of format_prompt to a list of messages.
 parse_output = RunnableLambda(lambda x: x.content)
 

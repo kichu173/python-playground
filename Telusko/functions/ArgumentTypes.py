@@ -22,6 +22,7 @@ sum(5,6,34,78)
 
 def person2(name, **data): # data is a dictionary and this is Keyworded variable length arguments
     print(name)
+    print(data) # {'age': 28, 'city': 'Chennai', 'mob': 9865432}
 
     for i,j in data.items():
         print(i,j)
