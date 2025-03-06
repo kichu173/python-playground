@@ -97,6 +97,9 @@ For example, the word "hello" is one token, while the phrase "I'm" is typically 
 Tokens are crucial because LLMs have a limit on how many tokens they can handle at once, often referred to as the "context window."
 This means that if we have a PDF that's 10 million tokens long, we can't feed it to the model in one go.
 
+# Chunking - is a process of breaking down a large document into smaller, more manageable pieces.
+# Retriever - is a component that searches through these chunks to find the most relevant information based on the user's prompt and pass it to the model along with the user prompt.
+
 # Embeddings and Vector DBs
 What are embeddings?
 A vector embedding is a mathematical representation of words, sentences or even images.
@@ -108,6 +111,8 @@ Embeddings and Vector DBs
 Vector DB definition:
 ======================
 A database built to store all the vector embeddings is considered a vector database.
+What does it do? - basically lets us retrieve information or update info or do something, vector dbs as well enables us to retrieve info based on meaning rather than on exact word matches.
+In vector store, we store the actual plain text of the document and the embeddings of the document.
 
 We can also think RAGs as giving long-term memory to LLMs.
 Example: There is a customer support bot, so all the past conversations with a specific user can be stored in a vector db so that in the future if there's a specific question
@@ -116,3 +121,12 @@ from history that the user asked, the bot can refer to the past conversation and
 # Dependencies to install
 pip install chromadb - This will contain all the core modules needed to create the vector store.
 pip install langchain-chroma - This will be a wrapper that connects our langchain application with the vector store.
+
+# Chunk overlap?
+Reason #1
+Chunk Overlap defines how many characters (or tokens, depending on the splitter) should be included in both the end of one chunk and the beginning of the next chunk.
+By setting Chunk Overlap = O, you are telling the splitter to ensure that there's no overlap between chunks
+If you set chunk_overlap = 100, for example, the last 100 characters of one chunk will appear at the beginning of the next chunk. This helps preserve context across chunks.
+
+Reason #2: Semantic Understanding
+Especially when working with large texts (like books), chunking with overlap can help with better understanding across the chunks when querying or processing.
