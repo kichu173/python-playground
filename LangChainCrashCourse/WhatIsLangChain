@@ -75,7 +75,7 @@ RAGs give LLMs additional knowledge
 In other words, we use RAGs to provide LLMs an external source of information to give better answers to out prompts.
 
 # Real-world example:
-Let's say you're working at a company with IOOs of internal documents ( like policy guidelines, technical specs, customer support documents, etc)
+Let's say you're working at a company with 1OOs of internal documents ( like policy guidelines, technical specs, customer support documents, etc)
 
 Now, if you have a question that could be answered by one of these documents, you would normally need to search through each file manually
 
@@ -83,8 +83,36 @@ But with RAGs, this process can be streamlined. (You can give access to all thes
 
 So the next time when you have a question, you can just ask it in simple English and the LLM retrieves the most relevant info from those documents and uses it to give you an accurate answer—all in one go.
 
-# Next challenge solved by RAG: Context Window Limitation
+# Next challenge solved by RAG: Context Window Limitation - if you give large huge prompts to LLM, it really struggles to answer the question, it sort of starts hallucinating and it sort of starts to forget what happened before that in the past and all of that because of the context window or the limit becomes very high.
 It solves this problem by only pulling/retrieving the relevant sections of the documents based on the user prompt.
 
 RAGs is a method where we combine LLMs with a retrieval system.
 This retrieval system can search through vast sources of external information—like documents, databases, or knowledge bases—whenever the LLM needs additional knowledge to give you a better answers. All the while making sure LLMs are not overwhelmed with bigger prompts.
+
+What are tokens?
+In the context of language models, a token is a unit of text that the model processes.
+Tokens can be as short as one character or as long as one word, depending on the language and structure of the text.
+For example, the word "hello" is one token, while the phrase "I'm" is typically broken down into two tokens: "I" and '"m."
+
+Tokens are crucial because LLMs have a limit on how many tokens they can handle at once, often referred to as the "context window."
+This means that if we have a PDF that's 10 million tokens long, we can't feed it to the model in one go.
+
+# Embeddings and Vector DBs
+What are embeddings?
+A vector embedding is a mathematical representation of words, sentences or even images.
+For example, the word "cat" can have a vector embedding that can look something like this: [34, 21, 7.5, -12, 0.2, 18, -3]
+So this is the computer's way of making sense of the word "cat".
+Basically each of these numbers can represent a certain aspect of the word "cat".
+
+Embeddings and Vector DBs
+Vector DB definition:
+======================
+A database built to store all the vector embeddings is considered a vector database.
+
+We can also think RAGs as giving long-term memory to LLMs.
+Example: There is a customer support bot, so all the past conversations with a specific user can be stored in a vector db so that in the future if there's a specific question
+from history that the user asked, the bot can refer to the past conversation and give a more accurate answer.
+
+# Dependencies to install
+pip install chromadb - This will contain all the core modules needed to create the vector store.
+pip install langchain-chroma - This will be a wrapper that connects our langchain application with the vector store.
