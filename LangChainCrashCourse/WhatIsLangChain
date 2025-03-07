@@ -106,13 +106,14 @@ A vector embedding is a mathematical representation of words, sentences or even 
 For example, the word "cat" can have a vector embedding that can look something like this: [34, 21, 7.5, -12, 0.2, 18, -3]
 So this is the computer's way of making sense of the word "cat".
 Basically each of these numbers can represent a certain aspect of the word "cat".
+(picture this in a x,y axis graph) Each of the values are actual coordinates in a multi dimensional space, so the word "cat"/"Kitten" is represented by a point in this multi dimensional space.
 
 Embeddings and Vector DBs
 Vector DB definition:
 ======================
 A database built to store all the vector embeddings is considered a vector database.
-What does it do? - basically lets us retrieve information or update info or do something, vector dbs as well enables us to retrieve info based on meaning rather than on exact word matches.
-In vector store, we store the actual plain text of the document and the embeddings of the document.
+What does it do? - basically lets us retrieve information or update info or do something, vector dbs as well enables us to retrieve info based on **meaning** rather than on exact word matches.
+In vector store, we store the actual plain text of the document and the embeddings of the document. Each chunk in the vector store is going to have the embedded representation and plain text version as well.
 
 We can also think RAGs as giving long-term memory to LLMs.
 Example: There is a customer support bot, so all the past conversations with a specific user can be stored in a vector db so that in the future if there's a specific question
@@ -130,3 +131,62 @@ If you set chunk_overlap = 100, for example, the last 100 characters of one chun
 
 Reason #2: Semantic Understanding
 Especially when working with large texts (like books), chunking with overlap can help with better understanding across the chunks when querying or processing.
+
+# RAGs - With MetaData
+Basically being able to add more information about where the chunk came from, for example this chunk came from this book this chapter this passage, etc.
+So that in future, by retrieving it we'll actually be able to see where the source of chunk came from
+
+# Why do we need it?
+Let's say we've put a 100 different private docs or books in our vector store, and we ask a question.
+In addition to getting the chunks, it'll be better if we also know where the chunk originated from right?, For ex, like it's this book, chapter 4, paragraph 3 or this
+document, this section, paragraph 7
+
+
+# AI Agents & Tools - Basic
+Giving your AI the ability to actually use the tools and make decision like a actual human being.
+Think of Agents as the "problem-solvers" of the AI world. Agents are capable of thinking on their own.
+In other words, it's AI that can make autonomous decisions.
+In the case of Chains and RAGs, they follow our specific instruction.
+But Agents, they actually take it a step further. They can decide for themselves what steps to take on their own.
+
+# What exactly are agents?
+Think of Agents as AI decision-makers that can pick the right tool for the job without being told what to use.
+
+Just like a chef who knows when to use a knife, whisk, or oven to create a perfect dish, an AI can decide when it should browse the internet, or
+when to use a calculator or when to make an API call to your database.
+
+# What are tools then?
+Tools are specific functions that Agents can use to complete tasks.
+
+Just like a chef's kitchen tools (knife for cutting, oven for baking, blender formixing), tools are the special abilities we give to AI - like giving it a calculator
+tool, or a search engine tool, or a calendar tool.
+
+Agents help language models decide what actions to take when solving a problem.
+They choose the right tools at the right time without us telling them which tool to use.
+
+# Example to understand:
+If I ask an AI Agent "What is the weather in Paris + 5", it gets really interesting.
+The AI Agent isn't just randomly picking tools - it's actually thinking through the process, kind of like a detective solving a case.
+Firstly, the Agent saw two parts to the problem: finding weather AND doing math.
+It knows to get the weather FIRST (because you can't add 5 to something you don't know yet).
+Then it uses the calculator tool to add 5.
+
+But you might ask, how does the Agent know what to do first and what to do second?
+This is where the concept of reACT comes in.
+This is one of the best known patterns in AI today to build agents. And by ReACt I don't mean the frontend framework. We're talking in terms of AI terms. It stands
+for Reasoning + Acting.
+This is basically a concept that mimics how human beings think.
+
+ReACT pattern
+Think: It first things
+Act: The agent can act or perform the task using various tools available
+Observe: Observe what happened.
+(Repeat the entire process above if needed).
+
+Example of a complicated prompt:
+"Should I pack an umbrella for my trip to London next week, and what restaurants should I book?"
+Now this is a multi-step problem and our Al-Agent might loop through thought-action-observation-repeat-thought-action-observation multiple times to
+solve this problem.
+
+# pip install langchainhub - This is a package that contains all the tools and agents that you need to build a AI agent.
+It lets us use other people's prompt templates from the internet. So instead of writing my own I'm going to use someone else's.

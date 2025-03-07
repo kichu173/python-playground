@@ -28,7 +28,7 @@ retriever = db.as_retriever(
     search_type="similarity_score_threshold",
     search_kwargs={"k": 3, "score_threshold": 0.5}, # we're specifying just how many highest relevant chunks that we want retriever to bring.
 )
-relevant_docs = retriever.invoke(query) # magic keyword - invoke() we're going to be using to take action in LangChain.
+relevant_docs = retriever.invoke(query) # magic keyword - invoke() we're going to be using to take action in LangChain, also invoke here makes query embedded.
 
 # Display the relevant results with metadata
 print("\n--- Relevant Documents ---")
