@@ -144,13 +144,15 @@ document, this section, paragraph 7
 
 # AI Agents & Tools - Basic
 Giving your AI the ability to actually use the tools and make decision like a actual human being.
+
 Think of Agents as the "problem-solvers" of the AI world. Agents are capable of thinking on their own.
 In other words, it's AI that can make autonomous decisions.
-In the case of Chains and RAGs, they follow our specific instruction.
+** In the case of Chains and RAGs, they follow our specific instruction **.
 But Agents, they actually take it a step further. They can decide for themselves what steps to take on their own.
 
 # What exactly are agents?
 Think of Agents as AI decision-makers that can pick the right tool for the job without being told what to use.
+(The phrase "without being told what to use" means that the AI agents can autonomously decide which tool or method is best suited for a given task. They don't need explicit instructions or guidance on which tool to select; they can make that decision on their own based on the context and requirements.)
 
 Just like a chef who knows when to use a knife, whisk, or oven to create a perfect dish, an AI can decide when it should browse the internet, or
 when to use a calculator or when to make an API call to your database.
@@ -178,14 +180,14 @@ for Reasoning + Acting.
 This is basically a concept that mimics how human beings think.
 
 ReACT pattern
-Think: It first things
+Think/reasoning: It first thinks
 Act: The agent can act or perform the task using various tools available
 Observe: Observe what happened.
 (Repeat the entire process above if needed).
 
 Example of a complicated prompt:
 "Should I pack an umbrella for my trip to London next week, and what restaurants should I book?"
-Now this is a multi-step problem and our Al-Agent might loop through thought-action-observation-repeat-thought-action-observation multiple times to
+Now this is a multi-step problem and our AI-Agent might loop through thought-action-observation-repeat-thought-action-observation multiple times to
 solve this problem.
 
 # pip install langchainhub - This is a package that contains all the tools and agents that you need to build a AI agent.

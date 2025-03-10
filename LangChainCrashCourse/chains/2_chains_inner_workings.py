@@ -35,3 +35,24 @@ response = chain.invoke({"animal": "cat", "count": 2})
 
 # Output
 print(response)
+
+"""
+The `prompt_template.format_prompt` method is necessary and serves an important purpose in this LangChain workflow:
+
+1. **What it does:**
+   - It takes your input variables (like `"cat"` and `2`) and inserts them into your prompt template
+   - It replaces the placeholders `{animal}` and `{count}` with actual values
+
+2. **Why it's necessary:**
+   - It doesn't just return a regular string - it returns a special `PromptValue` object
+   - This object has the `to_messages()` method that's used in the next step (`x.to_messages()`)
+   - The model expects messages in a specific format, not just raw text
+
+3. **Simpler explanation:**
+   - Think of it like preparing ingredients before cooking:
+     - You have a recipe (prompt template) with placeholders
+     - `format_prompt` fills in those placeholders with your ingredients
+     - But instead of just giving you text, it packages everything in a format that the AI model can understand
+
+Without `format_prompt`, you'd need to manually format the prompt and convert it to the proper message structure that ChatOpenAI models expect.
+"""
