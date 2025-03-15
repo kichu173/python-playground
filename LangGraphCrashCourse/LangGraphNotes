@@ -1,0 +1,81 @@
+LangGraph
+1.	Levels of Autonomy in LLM applications (Code -> LLM Call -> Chain -> Router -> Agent)
+2.	Understanding Agents & Tools
+3.	Building Agents & Tools from Scratch
+4.	Building Agents From pre-defined LangChain classes
+5.	Graph Structure
+- Direct Acyclic Graph (DAG) vs Cyclic Graph
+6.	What is LangGraph?
+7.	Why LangGraph is required? What is the limitation with LangChain? Why not stick with LangChain?
+8.	Creating LangGraph from scratch
+9.	Creating a LangGraph using in-built classes (Reflection, Reflexion agent, multi agent)
+10.	Key concepts and terms in LangGraph
+- Graph, state, nodes, edges, visualisation, checkpoints, breakpoints, configuration)
+11.	Creating a Chatbot with LangGraph
+12.	Common Agentic Patterns
+•	Human-in-the-loop
+•	ReAct Agent, and many more.
+13.	Multi-agent systems using LangGraph
+14.	RAGs with LangGraph: CRAG vs ARAG vs self-RAG
+15.	Persistence
+16.	LangGraph ecosystem
+•	LangGraph Studio
+•	LangGraph Cloud API, etc
+17.	Agents in Production
+
+Levels of Autonomy in LLM applications(In summary, autonomy in LLM applications refers to the model's ability to operate independently and make decisions, ranging from basic text processing to complex, adaptive behaviors.)
+1. Code
+Code has zero autonomy and is 100% deterministic
+We all know that everything is hard-coded and it is not even really a cognitive architecture.
+Disadvantage:
+The problem? You'd need to write rules for every possible scenario - making it impossible to handle real-world complexity.
+
+2. LLM call
+A single LLM call means your app basically does one main thing - you give it an input, it processes it, and gives you back an output.
+Think of chatbots that just take your message and respond, or apps that translate text.
+This was a huge leap from hard-coded rules, even though it's still pretty simple and is only in the 2nd stage of autonomy
+
+User Input  ---> LLM ----> Output
+Example User Input: You are an expert LinkedIn post writer. Write me a post on "Al Agents Taking over Content Creation"
+Disadvantage:
+Trying to get everything done in one shot often leads to confused or mixed-up responses - just like how a single person can't be an expert at everything.
+
+3. Chains
+Think of chains like having multiple specialists instead of one generalist. Instead of asking one AI to do everything, we break it down into steps where each AI is really good at one thing.
+Imagine a customer service chatbot: The first AI reads your complaint and figures out exactly what product you're talking about
+The second AI finds the right solution from the company's help docs, and the third Al turns that solution into a friendly response.
+Each step is simple, but together they create a much smarter system than a single LLM call could.
+
+This is where we first started seeing Al apps that could handle more complex tasks - not just by being smarter, but by breaking big problems into smaller, manageable pieces.
+Disadvantage:
+The downside? These fixed sequences are like a rigid assembly line - they always follow the same steps defined by the human.
+
+4. Router
+Now this is where it gets interesting - routers are like smart traffic cops for your AI. Instead of having a fixed path like in chains, the Al itself decides what steps to take next.
+Imagine a personal assistant bot: when you ask it something, it first figures out if you need help with scheduling, research, or calculations, then routes your request to the right tool or chain for the job.
+Disadvantage:
+While it can choose different paths, it still can't remember previous conversations or learn from mistakes.
+
+5.	State Machine (Agent)
+This is combining the previous level (router) but with loops.
+Agent ~= control flow controlled by an LLM
+This involves features like:
+1.	Ability to have human-in-loop, ask for approval before moving on
+2.	Multi-agent systems
+3.	Advanced memory management
+4.	Go back in history and explore better alternate paths
+5.  Adaptive learning
+
+Chain/Router vs Agent
+A Chain or even a router is one directional. Hence, it is not an agent
+Whereas in a state machine, we can go back in the chain, have cycles and the flow is controlled by the LLM, hence it is called an Agent
+
+Agents and tools (intro is same as in LangChainNotes - AI Agents & Tools)
+We will also see what are it drawbacks when it comes to build a reACT agent using Langchain and where does LangGraph comes into play to solve those drawbacks.
+Agents - reasoning ability of LLM (brain) + tools (python function)
+
+# python -m venv .venv | .\.venv\Scripts\Activate.ps1 or source .\.venv\Scripts\activate | go to new terminal and verify the (.venv) is added to the path.
+# -m - module
+# venv - module name
+# .venv - virtual environment name
+In settings - python interpreter -> dropdown -> show all -> add local interpreter(C:/Users/kk000000/Documents/python-playground/LangGraphCrashCourse/.venv/Scripts/python.exe) - venv - apply - ok
