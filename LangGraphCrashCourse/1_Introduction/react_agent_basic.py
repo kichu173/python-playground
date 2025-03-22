@@ -9,12 +9,12 @@ load_dotenv()
 
 # https://python.langchain.com/docs/integrations/chat/azure_chat_openai/
 llm = AzureChatOpenAI(
-        azure_deployment=os.getenv("AZURE_API_DEPLOYMENT_ID"),
-        api_version=os.getenv("AZURE_API_VERSION"),
-        azure_endpoint=os.getenv("AZURE_API_ENDPOINT"),
-        openai_api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-        temperature=0,
-    )
+    azure_deployment=os.getenv("AZURE_API_DEPLOYMENT_ID"),
+    api_version=os.getenv("AZURE_API_VERSION"),
+    azure_endpoint=os.getenv("AZURE_API_ENDPOINT"),
+    openai_api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    temperature=0,
+)
 
 # for quick testing (llm works when we invoke?)
 # result = llm.invoke("Give me 5 facts about guava fruit")
@@ -41,3 +41,8 @@ tools = [search_tool, get_system_time]
 agent = initialize_agent(tools=tools, llm=llm, agent="zero-shot-react-description", verbose=True)
 
 agent.invoke("When was SpaceX's last launch, what was its name, and how many days ago was it from today?")
+
+"""
+C:\Users\kk000000\Documents\python-playground\LangGraphCrashCourse\1_Introduction\react_agent_basic.py:41: LangChainDeprecationWarning: LangChain agents will continue to be supported, but it is recommended for new use cases to be built with LangGraph. LangGraph offers a more flexible and full-featured framework for building agents, including support for tool-calling, persistence of state, and human-in-the-loop workflows. For details, refer to the `LangGraph documentation <https://langchain-ai.github.io/langgraph/>`_ as well as guides for `Migrating from AgentExecutor <https://python.langchain.com/docs/how_to/migrate_agent/>`_ and LangGraph's `Pre-built ReAct agent <https://langchain-ai.github.io/langgraph/how-tos/create-react-agent/>`_.
+  agent = initialize_agent(tools=tools, llm=llm, agent="zero-shot-react-description", verbose=True)
+"""

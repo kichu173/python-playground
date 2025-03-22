@@ -79,3 +79,137 @@ Agents - reasoning ability of LLM (brain) + tools (python function)
 # venv - module name
 # .venv - virtual environment name
 In settings - python interpreter -> dropdown -> show all -> add local interpreter(C:/Users/kk000000/Documents/python-playground/LangGraphCrashCourse/.venv/Scripts/python.exe) - venv - apply - ok
+
+1_Introduction - react_agent_basic.py -> We built a rEACT agent using LangChain, What are its drawbacks? and where does LangGraph come into picture?
+
+# WHat is LangGraph?
+A framework for building controllable, persistent agent workflows with built-in support for human interaction, streaming, and state management.
+It uses the Graph Data Structure to achieve this
+
+An open source AI agent building framework, built by LangChain, that is highly flexible and allows developers to connect to LLMs together in a way that the LLM can control what happens next.
+Other AI agent building frameworks available in market are:
+crewai, microsoft/autogen
+
+# Key Features Of LangGraph
+1.	Looping and Branching Capabilities:
+Supports conditional statements and loop structures, allowing dynamic execution paths based on state.
+2.	State Persistence:
+Automatically saves and manages state, supporting pause and resume for long-running conversations.
+3.	Human-Machine Interaction Support:
+Allows inserting human review during execution, supporting state editing and modification with flexible interaction control mechanisms.
+4.	Streaming Processing:
+Supports streaming output and real-time feedback on execution status to enhance user experience.
+5.	Seamless Integration with LangChain:
+Reuses existing LangChain components, supports LCEL expressions, and offers rich tool and model support.
+
+Core Components of LangGraph
+1.	Nodes (__start__, Generate tweet LLM, __END__, in the Reflection_agent_pattern.png)
+2.	Edges (What connects to nodes are called edges, not the dotted lines in Reflection_agent_pattern.png)
+3.	Conditional Edges (dotted lines in Reflection_agent_pattern.png based on conditions like if else)
+4.	State (Green box LLM in Reflection_agent_pattern.png is generating something and red box LLM is going to give a feedback and this green box LLM is going to generate back something for that again - so the entire context need to be maintained right? so that is why state is also going to be a core component of LangGraph)
+
+Reflection Agents in LangGraph
+1.	What is a Reflection Agent System?
+2.	Three types of Reflection Agent Systems
+3.	Setup & Installations
+4.	Implement a reflection Agent System
+
+But what does the English word "reflection" mean?
+Like how you're looking at your reflection in the mirror, reflection means looking at yourself or your actions
+For example:
+•	After giving a presentation, thinking about how it went
+•	After writing an email, reading it again to check if it's clear
+•	After making a decision, considering if it was the right choice
+
+So what is a reflection-agent pattern?
+A reflection agent pattern is an AI system pattern that can look at its own outputs and think about them/make it better - just like how we look at ourselves in a mirror and self-reflect, make ourselves better
+
+A basic reflection agent system typically consists of:
+1.	A generator agent
+2.	A reflector agent
+
+# Types of Reflection Agents in LongGraph
+There are 3 types:
+1.	Basic Reflection Agents
+2.	Reflexion Agents
+3.	Language Agent Tree Search (LATS)
+
+# pip install langgraph
+
+# What is a MessageGraph?
+It is a class that LangGraph provides that we can use to orchestrate the flow of messages between different nodes.
+Example use cases: Simple routing decisions, simple chatbot conversation flow.
+If you just want to pass messages along between nodes, then go for MessageGraph.
+If the app requires complex state management, we have StateGraph (more on this later).
+
+To put it simply, MessageGraph maintains a list of messages flow of those messages between nodes
+Every node in MessageGraph receives the full list of previous messages as input
+Each node can append new messages to the list and return it
+The updated message list is then passed to the next node
+
+# pip install grandalf
+
+# Reflexion Agents in LangGraph
+Recap of what we saw previously:
+Reflection Agent System consists of a generator and a reflector component.
+Although, iteratively making a post better is significantly better than just prompting ChatGPT, the content generated is still not grounded in live data.
+It could be hallucination or outdated content and we have no way of knowing.
+
+Reflexion Agent System address this exact drawback.
+
+# Reflexion Agents in LangGraph
+What is Reflexion Agent System:
+The reflexion agent, similar to reflection agent, not only critiques it's own responses but also fact checks it with external data by making API calls (Internet Search).
+In the Reflection agent pattern, we had to rely on the training data of LLMs but in this case, we're not limited to that.
+
+What is Reflexion Agent System:
+The main component of Reflexion Agent System is the "actor"
+The "actor" is the main agent that drives everything - it reflects on it's responses and re-executes.
+It can do this with or without tools to improve based on self-critique that is grounded in external data.
+
+It's main sub-components include:
+1. Tools/ tool execution
+2. Initial responder: generate an initial response & self-reflection
+3. Revisor: re-respond & reflect based on previous reflections
+
+Episodic memory
+In the context of Reflexion agents, episodic memory refers to an agent's ability to recall specific past interactions, events, or experiences, rather than just generalized knowledge.
+This is crucial for making agents feel more context-aware, personalized, and human-like over time.
+
+# Reflexion agent system - Reflexion actor
+Why we call both of these agents(responder and revisor) as subcomponent of the actor? because the base chat prompt template, the propmpt template is going to be the actors and both of these components are going to use the same basically reuse the same prompt as that of the actor.
+
+# LLM Response Parser System
+The system converts unstructured LLM outputs into well-defined Python objects through a series of structured parsing steps, ensuring data validation and
+consistent formatting.
+What are the key components?
+1.	Chat Prompt Template
+2.	Function Calling with Pydantic Schema
+3.	Pydantic Parser
+
+2. Function Calling with Pydantic Schema
+Function calling:
+Similar to how we make tools available to the LLM, we can also send a schema to the LLM and force it to structure it's JSON output according to the schema
+
+Pydantic:
+A Python library that defines data structures using classes
+Provides automatic validation of JSON data against these class definitions
+
+3. Pydantic Parser
+Takes the JSON output from the LLM's function call
+Validates it against the defined Pydantic schema (class definition)
+Creates instances of Pydantic classes with the validated data
+If the LLMs output does not match with the defined schema, it will throw an error
+
+
+
+
+
+
+
+
+
+
+
+
+
