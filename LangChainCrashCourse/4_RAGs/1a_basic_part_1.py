@@ -1,4 +1,6 @@
 # Implementing the first part of the RAG.png image, 1a, 1b
+# Here we are using chromadb as our vector db/store. So embeddings are stored locally in the db directory and not in the cloud.
+# Lord of the Rings book is used as the document to be embedded and stored in the db directory.
 
 import os
 from langchain.text_splitter import CharacterTextSplitter
@@ -9,12 +11,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Define the directory containing the text file and the persistent directory
+# Define the directory containing the text file and the persistent directory (load the document)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, "documents", "lord_of_the_rings.txt")
-persistent_directory = os.path.join(current_dir, "db", "chroma_db")
+persistent_directory = os.path.join(current_dir, "db", "chroma_db") # embeddings are stored locally in the db directory and not in the cloud.
 
-# Check if the Chroma vector store already exists
+# Check if the Chroma vector store already exists (text to embeddings cost little bit of money, so we are making this check to avoid re-embedding the text file)
 if not os.path.exists(persistent_directory):
     print("Persistent directory does not exist. Initializing vector store...")
 
@@ -25,12 +27,12 @@ if not os.path.exists(persistent_directory):
         )
 
     # Read the text content from the file
-    loader = TextLoader(file_path)
+    loader = TextLoader(file_path) # to load the document/book in memory.
     documents = loader.load()
 
     # Split the document into chunks
-    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=50) # If you are working with complex texts like essays /novels, it's better to give somewhere b/n 50-100 characters. If you are working with simple text you can leave it with 0.
-    docs = text_splitter.split_documents(documents)
+    text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=50) # chunk_size=1000 - include 1000 characters, chunk_overlap - If you are working with complex texts like essays /novels, it's better to give somewhere b/n 50-100 characters. If you are working with simple text you can leave it with 0.
+    docs = text_splitter.split_documents(documents) # array of chunks of text.
 
     # Display information about the split documents
     print("\n--- Document Chunks Information ---")
@@ -41,7 +43,7 @@ if not os.path.exists(persistent_directory):
     print("\n--- Creating embeddings ---")
     embeddings = OpenAIEmbeddings(
         model="text-embedding-3-small"
-    )  # Update to a valid embedding model if needed
+    )  # Update to a valid embedding model if needed (text-embedding-3-large)
     print("\n--- Finished creating embeddings ---")
 
     # Create the vector store and persist it automatically

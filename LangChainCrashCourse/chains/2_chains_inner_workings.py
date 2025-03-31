@@ -1,4 +1,4 @@
-# How chains works under the hood(internals of chains) - So that we can write our own custom function in place of StrOutputParser().
+# How chains works under the hood(internals of chains) without the pipe operator - So that we can write our own custom function in place of StrOutputParser().
 
 from dotenv import load_dotenv
 from langchain.prompts import ChatPromptTemplate

@@ -6,6 +6,7 @@ load_dotenv()
 
 llm = ChatOpenAI(model="gpt-3.5-turbo")
 
+# messages list
 messages = [
     SystemMessage("You are an expert in social media content strategy"),
     HumanMessage("Give a short tip to create engaging posts on Instagram"),

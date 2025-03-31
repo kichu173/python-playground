@@ -1,3 +1,7 @@
+# code goes identical as 1a,1b except the metadata concept and the new documents like about_me,Alice_in_wonderland,Dracula, Frankenstein.
+# chroma_db_with_metadata is the db directory that contains the vector store with metadata for this example 2a,2b.
+# another change is here we are embedding multiple documents instead of one document
+
 import os
 
 from langchain.text_splitter import CharacterTextSplitter
@@ -27,7 +31,7 @@ if not os.path.exists(persistent_directory):
             f"The directory {books_dir} does not exist. Please check the path."
         )
 
-    # List all text files in the directory
+    # List all text files in the directory (another change is here we are embedding multiple documents instead of one document)
     book_files = [f for f in os.listdir(books_dir) if f.endswith(".txt")]
 
     # Read the text content from each file and store it with metadata
@@ -38,7 +42,7 @@ if not os.path.exists(persistent_directory):
         book_docs = loader.load()
         for doc in book_docs:
             # Add metadata to each document indicating its source
-            doc.metadata = {"source": book_file}
+            doc.metadata = {"source": book_file} # {"source": "Lord of the Rings.txt"}
             documents.append(doc)
 
     # Split the documents into chunks

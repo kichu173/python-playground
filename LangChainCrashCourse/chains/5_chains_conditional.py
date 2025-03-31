@@ -1,3 +1,9 @@
+"""
+We are taking the user feedback and sending it to the model, asking it to tell whether it is a positive feedback or a negative feedback or a neutral feedback or an escalate feedback.
+Once we categorize feedback, depending on the type of feedback, we need the control flow to go to any one of the branches.
+we are conditionally sort of making decisions to go to any one branch.
+"""
+
 from dotenv import load_dotenv
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.output_parser import StrOutputParser

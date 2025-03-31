@@ -2,8 +2,23 @@
 # https://github.com/harishneel1/langchain-course
 # https://platform.openai.com/settings/organization/billing/overview
 
+# Overview:
+1.	Introduction to LangChain (What is it, why is it used?)
+2.	Python Development Setup (Python 3.8 or higher is needed)
+3.	LangChain Core Components
+
+# LangChain Core Components:
+1. Chat Models (We will basically interact with OpenAI's chat model / claude chat model)
+2. Prompt templates - (basically make our prompts to the AI as templates and add placeholders in it so that it can take dynamic values)
+3. Chains - (Chains and LangChain are like assembly line, each step handles a specific task and passes the result to the next step)
+4. RAGs - It is one of those imp technologies that are helping businesses to increase productivity, so if you ever heard about custom AI chatbots trained on a company's private data,
+the data could be in form of PDFs or could be from DB and user can sort of chat with the data, then this is what going on RAGs or retrieval augmented generation.
+5. Agents and tools - (AI Agents are like a human agent who can see a problem and use various tools to solve particular problem, it can sort of interact with the real world(APIs, send emails, scrape data from website, run python script or query a db),
+make decisions)
+
+# What is LangChain?
 # Prompt in chatGpt - I want to plan a trip to Paris this Saturday. Can you book my flight, also book a hotel the same day, and suggest some good restaurants?
-# ChatGpt itself an app with UI -> query(above prompt) is now sent to LLM (GPT-3.5-turbo, GPT-4o, etc) -> LLM processes the prompt and returns the output -> output is displayed in the UI
+# ChatGpt itself an app with UI -> query(above prompt) is now sent to LLM model(GPT-3.5-turbo, GPT-4o, etc) -> LLM processes the prompt and returns the output -> output is displayed in the UI
 # Response in short - I can't book flights or hotels directly, but I can definitely help you plan your trip! Here are suggestions ......
 (cant book tickets - biggest limitation of LLM)
 # LLMs are smart and can talk about travel but they cannot actually interact with real world, so on its own LLMs are just the brains, they can be trained on certain data
@@ -12,22 +27,29 @@
 # If you wanna do that we need to have some sort of a framework that is going to help us to connect the LLM to the real world.
 # LangChain acts a bridge between LLM and real world. LangChain the most popular framework that helps build apps using LLMs.
 
+AI response for what is reasoning - In the context of your message, "reason with it" means that Large Language Models (LLMs) can analyze, interpret, and make sense of the data they are trained on.
+They can generate responses, provide insights, and solve problems based on the information they have learned.
+However, their capabilities are limited to processing and reasoning within the scope of their training data.
+They cannot perform actions or interact with the real world beyond generating text-based responses.
+For example, an LLM can help plan a travel itinerary by suggesting destinations and activities based on the data it has, but it cannot book flights or hotels for you.
+
 # In the future if you want to switch out from GPT 4o with lets say a free HuggingFace LLM if you are short on cash or maybe you want to use a different LLM like Claude Sonnet.
 # You can do so without even touching the code that you wrote with LangChain.
 # So with LangChain the AI that we are working with can do so much with real world.
-# example: it can access lot of apis, like it can access flight and restaurant booking api, booking.com, access private company dbs to answer customer queries, it can send emails, it can browse google, wikipedia, it can scape websites and a lot lot more..
+# example: it can access lot of apis, like it can access flight and restaurant booking api, booking.com, access private company dbs to answer customer queries, it can send emails, it can browse google, wikipedia, it can scrape websites and a lot lot more..
 # LangChain doesnt just make the AI smarter but it gives the ability to act in the real world.
 
 # python -m venv .venv | go to new terminal and verify the (.venv) is added to the path.
 # -m - module
 # venv - module name
 # .venv - virtual environment name
+# ./venv/Scripts/Activate.ps1 - activate the virtual environment | source .venv/Scripts/activate - mac
 In settings - python interpreter -> dropdown -> show all -> add local interpreter - venv - apply - ok
 
 # 1st core component of the LangChain is chat models (https://python.langchain.com/docs/integrations/chat/)
 # A chat model in LangChain is a component designed to communicate in a structured way with the LLMs like GPT-4, Hugging Face, and claude sonnet.
 
-Why use LangChain Chat models?
+Why use LangChain Chat models, instead of directly calling LLMs apis?
 1. Consistent workflow:
     LangChains Chat models unify different APIs, saving you from managing each one's unique setup and quirks.
 2. Easy switching between LLMs
@@ -45,7 +67,7 @@ Why use LangChain Chat models?
 # -U - upgrade the package if it is already installed to the latest version.
 # pip install -qU langchain-google-firestore
 
-Types of Messages in LangChain
+# Types of Messages in LangChain (2_chat_models_conversation.py)
 1. SystemMessage: Defines the AI's role and sets the context for the conversation
 Example. "You are a marketing expert."
 2. HumanMessage: Represents user input or questions directed to the AI
@@ -61,7 +83,7 @@ Example. "Focus on social media engagement"
 
 # TYPES OF CHAINING
 1. Extended or Sequential Chaining:
-Chaining tasks one by one is a straight/sequential line
+Chaining tasks one by one is a straight/sequential line (dependent on each other)
 2. Parallel Chaining:
 Let you run tasks parallely or simultaneously without being dependent on each other
 3. Conditional Chaining:
@@ -70,7 +92,7 @@ Let you run a particular branch based on a condition
 # 4th core component of the LangChain is RAG. It is what is creating a lot of impact in how businesses operate and increase efficiency.
 Retrieval Augmented Generation (RAG).
 
-# RAGs solves one problem with LLM and the problem it solves:
+# RAGs solves one problem with LLMs and the problem it solves:
 RAGs give LLMs additional knowledge
 In other words, we use RAGs to provide LLMs an external source of information to give better answers to out prompts.
 
@@ -84,10 +106,13 @@ But with RAGs, this process can be streamlined. (You can give access to all thes
 So the next time when you have a question, you can just ask it in simple English and the LLM retrieves the most relevant info from those documents and uses it to give you an accurate answer—all in one go.
 
 # Next challenge solved by RAG: Context Window Limitation - if you give large huge prompts to LLM, it really struggles to answer the question, it sort of starts hallucinating and it sort of starts to forget what happened before that in the past and all of that because of the context window or the limit becomes very high.
-It solves this problem by only pulling/retrieving the relevant sections of the documents based on the user prompt.
+# we cannot really dump all our private docs into chatGpt and then ask a question and expect it to give us a good answer. We can make all these PDFs and everything available to LLM without having to actually dump all of it into a prompt. Lets say 100 or thousand docs sitting in your own private db, So the way RAG solves this is by - **refer below line**
+It solves this problem by only pulling/retrieving the relevant sections of the documents based on the user prompt and send it to LLM.
 
 RAGs is a method where we combine LLMs with a retrieval system.
 This retrieval system can search through vast sources of external information—like documents, databases, or knowledge bases—whenever the LLM needs additional knowledge to give you a better answers. All the while making sure LLMs are not overwhelmed with bigger prompts.
+
+4_RAGs -> RAG.png (RAG workflow), split into 2 parts 1st part is vector store/chunking/embedding and 2nd part is retriever.
 
 What are tokens?
 In the context of language models, a token is a unit of text that the model processes.
@@ -97,16 +122,28 @@ For example, the word "hello" is one token, while the phrase "I'm" is typically 
 Tokens are crucial because LLMs have a limit on how many tokens they can handle at once, often referred to as the "context window."
 This means that if we have a PDF that's 10 million tokens long, we can't feed it to the model in one go.
 
+4_RAGs -> model_token_limits_comparison.png (RAG workflow)
+
 # Chunking - is a process of breaking down a large document into smaller, more manageable pieces.
 # Retriever - is a component that searches through these chunks to find the most relevant information based on the user's prompt and pass it to the model along with the user prompt.
+
+# What exactly is a chunk? What does it have?
+Basically they are just plain text, imagine if you have a 500 page book, we also know that each chunk can have only 1k tokens, then each chunk can be taught of as just like four to five lines or a small paragraph.
+Next chunk is going to have next four to five lines. The ordering is maintained as well. So the first chunk is going to have the first four to five lines of the book and the second chunk is going to have the next four to five lines of the book and so on.
+
+After chunk, our next goal is to extract only the relevant chunks that are relevant to the user prompt. Collect only those particular chunks and then pass it to the LLM along with the prompt.
+
+Here we have to ask ourselves a question? How can we actually query only the chunk that are relevant to the user prompt?
+We can't brut force search and check for exact words that match with a prompt, right? that's kind of like an old school dumb way of doing things.
+We need to be collecting the chunks based on meaning not the exact word matches. This is where embeddings and vector dbs come into play.
 
 # Embeddings and Vector DBs
 What are embeddings?
 A vector embedding is a mathematical representation of words, sentences or even images.
 For example, the word "cat" can have a vector embedding that can look something like this: [34, 21, 7.5, -12, 0.2, 18, -3]
 So this is the computer's way of making sense of the word "cat".
-Basically each of these numbers can represent a certain aspect of the word "cat".
-(picture this in a x,y axis graph) Each of the values are actual coordinates in a multi dimensional space, so the word "cat"/"Kitten" is represented by a point in this multi dimensional space.
+Basically each of these numbers can represent a certain aspect of the word "cat". Just FYI, this is how ChatGPT works under the hood as well. (Embeddings_vector_dbs_math_representation.png)
+(picture this in a x,y axis graph) Each of the values are actual coordinates in a multi dimensional space, so the word "cat"/"Kitten" is represented by a point in this multi dimensional space by meaning/size.
 
 Embeddings and Vector DBs
 Vector DB definition:
@@ -114,6 +151,18 @@ Vector DB definition:
 A database built to store all the vector embeddings is considered a vector database.
 What does it do? - basically lets us retrieve information or update info or do something, vector dbs as well enables us to retrieve info based on **meaning** rather than on exact word matches.
 In vector store, we store the actual plain text of the document and the embeddings of the document. Each chunk in the vector store is going to have the embedded representation and plain text version as well.
+So now entire book or pdf or just pretty much any private data is completely present in our vector store.
+
+1:39:00
+(RAG.png) 2nd step after chunking the PDFs with 10M tokens is we are converting each of those chunks into vector embeddings and storing them in a vector db.
+Vector embeddings are mathematical representations of the text in the chunks. We can do it by using LLM Embedders.
+OpenAPI provides us with embedder API that can help us to convert simple text into embeddings.
+
+2nd part of RAGs.png - Retriever
+It starts with the user asking a question about the book, lets say the book is lord of the rings. Que from user is: What is the name of frodo's sword?
+So what we do is we also convert this question/ that prompt into an embedding, so the next this is we have a retriever component, that takes this embedding which we know is the mathematical representation of the prompt.
+It asks the vector store, hey give the top 5 relevant chunks for this particular question.
+So the vector store which has very low latency(which means very fast as it is working with numbers) is going to look through all the chunks and it's going to find the top 5 chunks that are most relevant to this prompt with the highest relevant scores.
 
 We can also think RAGs as giving long-term memory to LLMs.
 Example: There is a customer support bot, so all the past conversations with a specific user can be stored in a vector db so that in the future if there's a specific question
@@ -134,19 +183,28 @@ Especially when working with large texts (like books), chunking with overlap can
 
 # RAGs - With MetaData
 Basically being able to add more information about where the chunk came from, for example this chunk came from this book this chapter this passage, etc.
-So that in future, by retrieving it we'll actually be able to see where the source of chunk came from
+So that in future, by retrieving it we'll actually be able to see where the source of chunk came from. It is helpful in real world applications as well.
 
 # Why do we need it?
 Let's say we've put a 100 different private docs or books in our vector store, and we ask a question.
 In addition to getting the chunks, it'll be better if we also know where the chunk originated from right?, For ex, like it's this book, chapter 4, paragraph 3 or this
 document, this section, paragraph 7
 
+Another example could be, we could store transcripts from a meeting in the vector store.
+2 years from now, we can chat with the model, ask it what was discussed that day, and it will give me the answer along with the source as well,
+so we can just click on a link and go explore further manually.
+
+# You have learnt how to:
+Build intelligent document retrieval systems
+Create context-aware conversational Al
+Connect AI with your private data
+And even integrate web crawling capabilities
 
 # AI Agents & Tools - Basic
 Giving your AI the ability to actually use the tools and make decision like a actual human being.
 
 Think of Agents as the "problem-solvers" of the AI world. Agents are capable of thinking on their own.
-In other words, it's AI that can make autonomous decisions.
+In other words, it's AI that can make autonomous decisions. # "Take autonomous decisions" means making decisions independently, without needing approval or guidance from others. It implies having the authority and capability to act on one's own judgment.
 ** In the case of Chains and RAGs, they follow our specific instruction **.
 But Agents, they actually take it a step further. They can decide for themselves what steps to take on their own.
 
@@ -160,7 +218,7 @@ when to use a calculator or when to make an API call to your database.
 # What are tools then?
 Tools are specific functions that Agents can use to complete tasks.
 
-Just like a chef's kitchen tools (knife for cutting, oven for baking, blender formixing), tools are the special abilities we give to AI - like giving it a calculator
+Just like a chef's kitchen tools (knife for cutting, oven for baking, blender for mixing), tools are the special abilities we give to AI agents - like giving it a calculator
 tool, or a search engine tool, or a calendar tool.
 
 Agents help language models decide what actions to take when solving a problem.

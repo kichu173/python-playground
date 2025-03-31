@@ -27,7 +27,7 @@ translation_template = ChatPromptTemplate.from_messages(
 )
 
 # Define additional processing steps using RunnableLambda
-count_words = RunnableLambda(lambda x: f"Word count: {len(x.split())}\n{x}")
+# Prompt template always requires an object that needs to be passed into it.
 prepare_for_translation = RunnableLambda(lambda output: {"text": output, "language": "french"})
 
 

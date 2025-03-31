@@ -12,7 +12,7 @@ template = "Write a {tone} email to {company} expressing interest in the {positi
 # Step2 - convert the string into a template that the system(LangChain) can understand
 # prompt_template = ChatPromptTemplate.from_template(template)
 #
-# print(prompt_template)
+# print(prompt_template) # input_variables=['company', 'position', 'skill', 'tone'] input_types={} partial_variables={} messages=[HumanMessagePromptTemplate(prompt=PromptTemplate(input_variables=['company', 'position', 'skill', 'tone'], input_types={}, partial_variables={}, template='Write a {tone} email to {company} expressing interest in the {position} position, mentioning {skill} as a key strength. Keep it to 4 lines max'), additional_kwargs={})]
 #
 # # Step3: Invoke the template with the values for the placeholders
 # prompt =  prompt_template.invoke({

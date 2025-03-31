@@ -20,8 +20,8 @@ Landing Pages and Software Products: Developed over 20 custom projects for clien
 These projects helped him refine his technical expertise while instilling values of self-belief and passion for problem-solving.
 
 Professional Career
-Samsung
-At Samsung, Kiran Kumar worked as part of a core team managing Samsung.com, a platform generating over $1875 million ARR. His contributions include:
+Fidelity Investments
+At Fidelity, Kiran Kumar worked as part of a core team managing Samsung.com, a platform generating over $1875 million ARR. His contributions include:
 
 Performance Optimization: Improved Lighthouse scores from 18 to 62 through techniques like memoization and lazy loading.
 Load Time Reduction: Reduced API-triggering times by 2000+ milliseconds.
@@ -55,4 +55,4 @@ Kiran Kumar’s career has been defined by his technical acumen and leadership q
 External Links
 LinkedIn: https://www.linkedin.com/in/kiran-kumar-kalavakuri/
 Portfolio: nucleushq.io
-YouTube Channel: https://www.youtube.com/@harish_neel
+YouTube Channel: https://www.youtube.com/@Kiran_Kumar_K173

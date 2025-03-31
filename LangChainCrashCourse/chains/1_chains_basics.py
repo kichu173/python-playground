@@ -23,7 +23,7 @@ prompt_template = ChatPromptTemplate.from_messages(
 chain = prompt_template | model | StrOutputParser()
 # chain = prompt_template | model
 
-# Run the chain (Whatever we pass in here it will be available across the chain)
+# Run the chain (Whatever we pass in here it will be available across the chain). invoke() function we pass the object with placeholder values that the prompt template needs.
 result = chain.invoke({"animal": "elephant", "fact_count": 1})
 
 # Output

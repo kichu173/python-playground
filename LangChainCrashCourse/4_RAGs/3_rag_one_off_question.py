@@ -1,3 +1,5 @@
+# send all these retrieved chunks along with the users prompt to the LLM model to generate the answer.
+
 import os
 
 from dotenv import load_dotenv
@@ -31,11 +33,11 @@ retriever = db.as_retriever(
 relevant_docs = retriever.invoke(query)
 
 # Display the relevant results with metadata
-print("\n--- Relevant Documents ---")
-for i, doc in enumerate(relevant_docs, 1):
-    print(f"Document {i}:\n{doc.page_content}\n")
+# print("\n--- Relevant Documents ---")
+# for i, doc in enumerate(relevant_docs, 1):
+#     print(f"Document {i}:\n{doc.page_content}\n")
 
-# Combine the query and the relevant document contents
+# Combine the query and the relevant document contents/ chunk text
 combined_input = (
     "Here are some documents that might help answer the question: "
     + query

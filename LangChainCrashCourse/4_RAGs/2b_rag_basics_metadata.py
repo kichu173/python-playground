@@ -14,14 +14,14 @@ persistent_directory = os.path.join(db_dir, "chroma_db_with_metadata")
 # Define the embedding model
 embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
 
-# Load the existing vector store with the embedding function
+# Load the existing vector store with the embedding function ((we are loading the vector store in this case the chroma db, so the db is available to use inside this file)
 db = Chroma(persist_directory=persistent_directory,
             embedding_function=embeddings)
 
 # Define the user's question
 query = "Where is Dracula's castle located?"
 
-# Retrieve relevant documents based on the query
+# Retrieve relevant documents based on the query (relevant chunks that are getting generated based on the users prompt)
 retriever = db.as_retriever(
     search_type="similarity_score_threshold",
     search_kwargs={"k": 3, "score_threshold": 0.2},

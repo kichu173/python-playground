@@ -24,8 +24,8 @@ load_dotenv()
 # This is a perfect example where we can give more ability to LLM by creating agent. Now that agent can use a tool to figure out the current time.
 
 
-@tool # this is a decorator that tells the agent that this function is a tool and changes this method into the format that LangChain can easily understand
-def get_system_time(format: str = "%Y-%m-%d %H:%M:%S"):
+@tool # this is a decorator that tells the agent that this function is a tool and changes this method into the format that LangChain can easily understand.
+def get_system_time(format: str = "%Y-%m-%d %H:%M:%S"):# LLM decides to not pass in a certain format, so we have to provide a default value for the format.
     """ Returns the current date and time in the specified format """ # this is a docstring that tells the agent what this tool does, so beacuse of this llm will know if it should use this tool or not for a particular task.
 
     current_time = datetime.datetime.now() # gives us current system date and time (import datetime)
@@ -39,11 +39,12 @@ query = "What is the current time in London? (You are in India). Just show the c
 prompt_template = hub.pull("hwchase17/react") # react prompt we are pulling from langchain hub.
 # https://smith.langchain.com/hub/hwchase17/react
 
-tools = [get_system_time] # tools is a list, We can provide lot of tools to the agent, and depending on what the agent is solving at that particular point of time it can use the right tool to get the job done.
+tools = [get_system_time] # tools is a list, We can provide a lot of tools to the agent, and depending on what the agent is solving at that particular point of time it can use the right tool to get the job done. It can be google search tool or email sending tool etc..
 
-agent = create_react_agent(llm, tools, prompt_template) # 2:20:00
+agent = create_react_agent(llm, tools, prompt_template) # 2:20:00 - create an agent
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)# verbose = True because we want to be able to see what the agent is thinking and what it is doing at every step of the way (use it as logs to debug)
+# AgentExecutor - This is the class that is going to take the agent and run it.
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)# verbose = True because we want to be able to see what the agent is thinking and what it is doing at every step of the way (use it as logs to debug and tweak the agent)
 
-agent_executor.invoke({"input": query})
+agent_executor.invoke({"input": query})# no need to print the result because verbose is True, so it will print the result for us.
 

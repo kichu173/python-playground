@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatOpenAI(  # interface that lets us access that particular API
+llm = ChatOpenAI(  # interface that lets us access that particular API(OpenAI's api), Chat model here is ChatOpenAI, to initialize the LLM
     model="gpt-3.5-turbo",
     temperature=0,
 )

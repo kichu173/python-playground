@@ -6,10 +6,11 @@ from langchain_google_firestore import FirestoreChatMessageHistory
 from langchain_openai import ChatOpenAI
 
 """
-Steps to replicate this example:
+Steps to replicate this example: (Document based NoSQL DB)
+    # firebase.google.com -> Go to console on top right -> Create a project -> Enter your project name(LangChain) -> Uncheck Enable Google Analytics -> Continue or Create Project
 1. Create a Firebase account # https://console.firebase.google.com/project/langchain-c548e/overview -> build -> Firestore Database
-2. Create a new Firebase project and (build) -> FireStore Database
-3. Retrieve the Project ID
+2. Create a new Firebase project and (build) -> FireStore Database -> Create a new database -> database ID and location remains same and click next -> start in test mode
+3. Retrieve the Project ID (click on the settings icon/gear icon next to project overview -> project settings -> ProjectId)
 4. Install the Google Cloud CLI on your computer
     - https://cloud.google.com/sdk/docs/install
     - Authenticate the Google Cloud CLI with your Google account
@@ -33,7 +34,7 @@ client = firestore.Client(project=PROJECT_ID)
 
 # Initialize Firestore Chat Message History
 print("Initializing Firestore Chat Message History...")
-chat_history = FirestoreChatMessageHistory(
+chat_history = FirestoreChatMessageHistory( # the only change from previous example is this line. Insted of having chat_history as a list in-memory, we're now using FirestoreChatMessageHistory class to store in cloud.
     session_id=SESSION_ID,
     collection=COLLECTION_NAME,
     client=client,

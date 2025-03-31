@@ -59,7 +59,7 @@ chain = (
     | model # tip: Right before calling LLM, always prompt it. ex: summary_template as above line
     | StrOutputParser()
     | RunnableParallel(branches={"plot": plot_branch_chain, "characters": character_branch_chain}) # RunnableParallel is imported from LangChain, which helps to run multiple chains simultaneously.
-    | RunnableLambda(lambda x: combine_verdicts(x["branches"]["plot"], x["branches"]["characters"]))
+    | RunnableLambda(lambda x: combine_verdicts(x["branches"]["plot"], x["branches"]["characters"])) # after all, the parallel chains are done with the execution, we get next step in the chain(which is this line) which is combine_verdicts, where we have a method(combine_verdicts) to combine all of the results.
 )
 
 # Run the chain
